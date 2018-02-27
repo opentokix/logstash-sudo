@@ -1,0 +1,5 @@
+SUDOSESSION1 %{WORD}\(%{WORD}:%{WORD}\): session %{WORD:sudo.session} for user %{WORD:sudo.destuser}
+SUDOSESSION2 pam_unix\(sudo:session\): session %{WORD:sudo.session} for user %{WORD:sudo.destuser} by %{WORD:sudo.srcuser}\(uid=%{INT}\)
+SUDO1 %{SPACE}%{USERNAME:sudo.srcuser} : command not allowed ; TTY=%{NOTSPACE:sudo.tty} ; PWD=%{PATH:sudo.pwd} ; USER=%{USERNAME:sudo.destuser} ; COMMAND=%{GREEDYDATA:sudo.cmd}
+SUDO2 %{SPACE}%{USERNAME:sudo.srcuser} : TTY=%{NOTSPACE:sudo.tty} ; PWD=%{PATH:sudo.pwd} ; USER=%{USERNAME:sudo.destuser} ; COMMAND=%{GREEDYDATA:sudo.cmd}
+SUDO %{SUDOSESSION1}|%{SUDOSESSION2}|%{SUDO1}|%{SUDO2}
